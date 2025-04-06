@@ -350,6 +350,18 @@ define Device/rk3308
   IMAGE/sysupgrade.img.gz := boot-common | boot-script rk3308-uart2 | pine64-img | gzip | append-metadata
 endef
 
+define Device/hinlink_ht2
+$(call Device/rk3528)
+  DEVICE_VENDOR := Hinlink
+  DEVICE_MODEL := HT2
+  DEVICE_DTS := rk3528-hinlink-ht2
+  SUPPORTED_DEVICES := hinlink,ht2
+  UBOOT_DEVICE_NAME := easepi-rk3528
+  DEVICE_PACKAGES := kmod-r8168 kmod-thermal kmod-drm kmod-sound-soc-rockchip kmod-brcmfmac kmod-bluetooth kmod-hci-uart
+  KERNEL_CONFIG := config-hinlink_ht2
+endef
+TARGET_DEVICES += hinlink_ht2
+
 define Device/armsom_p2-pro
 $(call Device/rk3308)
   DEVICE_VENDOR := ArmSoM
